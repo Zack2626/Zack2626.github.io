@@ -3,12 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 三零八的酸甜苦辣
 subtitle:
 description:
 keywords:
-author: John Doe
+author: Mr.就米
 language:
+  - zh-CN
+  - en
+  - zh-HK
+  - zh-TW
 timezone:
 
 # URL
