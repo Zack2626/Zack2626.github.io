@@ -1,5 +1,4 @@
 ---
-layout: pages
 title: gitee pages无法deploy的问题
 date: 2019-05-26 12:51:34
 tags: 
@@ -29,16 +28,17 @@ _只是部署的话并不需要添加远程仓库_
 deploy:  
 type: git
 repo:
-    ]neme]: [url],[branch]
+    [name1]: [url],[branch]
+    [name2]: [url],[branch]
 ```
 
 ## 出现的问题
 
 deploy后网页不更新
 - github pages页面
-![](images/github.png)
+![github pages](/images/github.png)
 - gitee pages页面
-![](images/gitee.png)
+![gitee pages](/images/gitee.png)
 
 添加新文章后，也不会增加新文章。但是查看仓库，发现仓库已经更新，只是网页没有重新部署。
 
@@ -48,7 +48,7 @@ deploy后网页不更新
 
 ## 后记
 发现gitee pages和github不同，自动部署需要Gitee Pages Pro.
-![](images/gitee_pages_pro.png)
+![gitee pages pro](/images/gitee_pages_pro.png)
 
 
 
