@@ -44,7 +44,7 @@ deploy后网页不更新
 
 ## 尝试解决
 
-在` gitee——服务——Gitee Pages`中选择`重新部署`，网页更新。
+在`gitee——服务——Gitee Pages`中选择`重新部署`，网页更新。
 
 ## 后记
 发现gitee pages和github不同，自动部署需要Gitee Pages Pro.
