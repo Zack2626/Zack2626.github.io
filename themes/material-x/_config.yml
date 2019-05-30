@@ -57,7 +57,7 @@ cover:
   # search_placeholder: '搜索'
   # 主页封面菜单
   # features:
-  #   - name: 博文
+  #   - name: 首页
   #     icon: fas fa-rss
   #     url: /
   #   - name: 项目
