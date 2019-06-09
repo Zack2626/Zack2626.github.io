@@ -87,7 +87,7 @@ deploy:
 - type: git
   repo:
     github: https://github.com/Zack2626/Zack2626.github.io.git,master
-    gitee: https://gitee.com/Zack2626/Zack2626.git,master
+
 
 # 全局导入
 import:
