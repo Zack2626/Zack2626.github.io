@@ -19,11 +19,14 @@ categories:
 1. 在gitee上导入github仓库
 2. 设定pages的分支
 3. 本地git增加gitee的远程仓库
+
 ```
 git add remote [remote name] [remote url]
 ```
 _只是部署的话并不需要添加远程仓库_  
+
 4. 在_config.yml中添加deploy信息
+
 ```
 deploy:  
 type: git
@@ -35,9 +38,13 @@ repo:
 ## 出现的问题
 
 deploy后网页不更新
+
 - github pages页面
+
 ![github pages](/images/github.png)
+
 - gitee pages页面
+
 ![gitee pages](/images/gitee.png)
 
 添加新文章后，也不会增加新文章。但是查看仓库，发现仓库已经更新，只是网页没有重新部署。
@@ -47,6 +54,7 @@ deploy后网页不更新
 在`gitee——服务——Gitee Pages`中选择`重新部署`，网页更新。
 
 ## 后记
+
 发现gitee pages和github不同，自动部署需要Gitee Pages Pro.
 ![gitee pages pro](/images/gitee_pages_pro.png)
 
