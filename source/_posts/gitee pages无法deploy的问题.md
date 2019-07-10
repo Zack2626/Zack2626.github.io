@@ -8,7 +8,6 @@ categories:
 - 建站
 ---
 
-
 目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。  
 然而在电脑上通过`hexo deploy`命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 
 
@@ -19,22 +18,27 @@ categories:
 1. 在gitee上导入github仓库
 2. 设定pages的分支
 3. 本地git增加gitee的远程仓库
-```
-git add remote [remote name] [remote url]
-```
-_只是部署的话并不需要添加远程仓库_  
+
+    ```bash
+    $git add remote [remote name] [remote url]
+    ```
+
+    只是部署的话并不需要添加远程仓库
+
 4. 在_config.yml中添加deploy信息
-```
-deploy:  
-type: git
-repo:
-    [name1]: [url],[branch]
-    [name2]: [url],[branch]
-```
+
+    ```text
+    deploy:  
+    type: git
+    repo:
+        [name1]: [url],[branch]
+        [name2]: [url],[branch]
+    ```
 
 ## 出现的问题
 
 deploy后网页不更新
+
 - github pages页面
 ![github pages](/images/github.png)
 - gitee pages页面
@@ -47,12 +51,6 @@ deploy后网页不更新
 在`gitee——服务——Gitee Pages`中选择`重新部署`，网页更新。
 
 ## 后记
+
 发现gitee pages和github不同，自动部署需要Gitee Pages Pro.
 ![gitee pages pro](/images/gitee_pages_pro.png)
-
-
-
-
-
-
-
