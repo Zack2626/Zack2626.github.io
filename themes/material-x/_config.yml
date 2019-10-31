@@ -223,7 +223,8 @@ share:
 
 
 
-# footer: '页脚文字，支持[markdown](/)'
+footer: '<div style="width: 100px; margin: auto">[![又拍云](/images/youpaiyun_logo2.png)](https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral)'
+# footer： '在引号中间添加页脚，支持[markdown]语法'
 
 
 ############################### 评论系统 ###############################
