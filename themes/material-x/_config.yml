@@ -103,9 +103,9 @@ menu_mobile:
   - name: 近期文章
     icon: fas fa-clock
     url: /
-  - name: 文章归档
+  - name: 文章分类
     icon: fas fa-archive
-    url: archives/
+    url: categories/
     rel: nofollow
   - name: 开源项目
     icon: fas fa-code-branch

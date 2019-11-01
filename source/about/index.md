@@ -6,3 +6,5 @@ valine:
   placeholder: 记录308，记录生活
 sidebar: false
 ---
+
+记录308，记录生活
