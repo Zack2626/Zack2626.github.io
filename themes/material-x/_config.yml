@@ -46,11 +46,11 @@ updated_date_format: 'll' # 文章更新日期的格式
 
 # 幻灯片
 backstretch:
-  position: cover  # cover: 封面背景   full: 整个网页背景
+  position: full  # cover: 封面背景   full: 整个网页背景
   duration: 6000 # 持续时间（毫秒）
   fade: 2500     # 渐变（毫秒）
   images:
-    - https://img.vim-cn.com/29/91197b04c13f512f734a76d4ac422d89dbe229.jpg
+    - https://cloud.mrjiumi.cn/img/milai_background.jpg
 
 
 
@@ -63,21 +63,21 @@ cover:
   # logo: assets/logo.png    # logo和title只显示一个，若同时设置，则只显示logo
   # search_placeholder: '搜索'
   # 主页封面菜单
-  # features:
-  #   - name: 首页
-  #     icon: fas fa-rss
-  #     url: /
-  #   - name: 项目
-  #     icon: fas fa-code-branch
-  #     url: projects/
-  #   - name: 友链
-  #     icon: fas fa-link
-  #     url: friends/
-  #     rel: nofollow
-  #   - name: 关于
-  #     icon: fas fa-info-circle
-  #     url: about/
-  #     rel: nofollow
+  features:
+    - name: 首页
+      icon: fas fa-rss
+      url: /
+    - name: 文章
+      icon: fas fa-code-branch
+      url: archives/
+    - name: 导航
+      icon: fas fa-link
+      url: others/lead.html
+      rel: nofollow
+    - name: 关于
+      icon: fas fa-info-circle
+      url: about/
+      rel: nofollow
 
 
 # 桌面端导航栏菜单
@@ -148,7 +148,7 @@ sidebar:
         url: /
       - name: 文章归档
         icon: fas fa-archive
-        url: blog/archives/
+        url: archives/
         rel: nofollow
       - name: 开源项目
         icon: fas fa-code-branch
@@ -182,7 +182,7 @@ sidebar:
     title: "最近在听"
     more:
       icon: far fa-heart
-      url: https://music.163.com/#/user/home?id=63035382
+      url: https://music.163.com/#/user/home?id=39249969
       rel: external nofollow noopener noreferrer
       target: _blank
     server: netease   # netease（网易云音乐）tencent（QQ音乐） xiami（虾米） kugou（酷狗）
@@ -199,7 +199,7 @@ social:
   - icon: fab fa-github
     url: https://github.com/zack2626
   - icon: fas fa-headphones-alt
-    url: https://music.163.com/#/user/home?id=63035382
+    url: https://music.163.com/#/user/home?id=39249969
 
 
 # 分享按钮
