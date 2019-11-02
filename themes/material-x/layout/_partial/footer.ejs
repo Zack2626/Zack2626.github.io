@@ -24,6 +24,13 @@
     <%- __('footer.use') %>
     <a href="<%- theme.info.docs %>" target="_blank" class="codename"><%- theme.info.name %></a>
     <%- __('footer.theme') %>
+    <!-- 插入了又拍云的描述 -->
+    ，使用
+    <a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral">
+      <img src="/images/youpaiyun_logo2.png" alt="又拍云" style='width:70px; margin:auto; vertical-align:middle'>
+    </a> 
+    加速
+    <!-- 添加又拍云部分到此结束 -->
     <% if (theme.busuanzi == true) { %>
       <%- __('symbol.comma') %>
       <%- __('footer.total_views') %>
@@ -32,5 +39,6 @@
     <% } %>
     <%- __('symbol.period') %>
   </div>
+
 </footer>
 <script>setLoadingBarProgress(80);</script>

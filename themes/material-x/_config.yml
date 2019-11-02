@@ -249,7 +249,7 @@ share:
 
 
 
-footer: '<div style="width: 100px; margin: auto">[![又拍云](/images/youpaiyun_logo2.png)](https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral)'
+# footer: '<div style="width: 100px; margin: auto">[![又拍云](/images/youpaiyun_logo2.png)](https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral)'
 # footer: '页脚文字，支持[markdown](/)'
 
 
