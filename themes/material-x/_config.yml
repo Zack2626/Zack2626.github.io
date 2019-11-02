@@ -69,14 +69,14 @@ cover:
       url: /
     - name: 文章
       icon: fas fa-code-branch
-      url: blog/archives/
+      url: archives/
     - name: 导航
       icon: fas fa-link
       url: others/lead.html
       rel: nofollow
     - name: 关于
       icon: fas fa-info-circle
-      url: blog/about/
+      url: about/
       rel: nofollow
 
 
@@ -87,15 +87,15 @@ menu_desktop:
     url: /
   - name: 分类
     icon: fas fa-folder-open
-    url: blog/categories/
+    url: categories/
     rel: nofollow
   - name: 标签
     icon: fas fa-hashtag
-    url: blog/tags/
+    url: tags/
     rel: nofollow
   - name: 归档
     icon: fas fa-archive
-    url: blog/archives/
+    url: archives/
     rel: nofollow
 
 # 手机端导航菜单（从右上角的按钮点击展开）
@@ -105,7 +105,7 @@ menu_mobile:
     url: /
   - name: 文章分类
     icon: fas fa-archive
-    url: blog/archives/
+    url: archives/
     rel: nofollow
   - name: 开源项目
     icon: fas fa-code-branch
@@ -120,7 +120,7 @@ menu_mobile:
     rel: nofollow
   - name: 关于小站
     icon: fas fa-info-circle
-    url: blog/about/
+    url: about/
     rel: nofollow
 
 layout:
@@ -159,7 +159,7 @@ sidebar:
         url: /
       - name: 文章归档
         icon: fas fa-archive
-        url: blog/archives/
+        url: archives/
         rel: nofollow
       - name: 开源项目
         icon: fas fa-code-branch
@@ -174,18 +174,18 @@ sidebar:
         rel: nofollow
       - name: 关于小站
         icon: fas fa-info-circle
-        url: blog/about/
+        url: about/
         rel: nofollow
   - widget: category
     more:
       icon: fas fa-expand-arrows-alt
-      url: blog/categories/
+      url: categories/
       rel: nofollow
   - widget: tagcloud
     icon: fas fa-tags
     more:
       icon: fas fa-expand-arrows-alt
-      url: blog/tags/
+      url: tags/
       rel: nofollow
   # - widget: related_posts # 需要安装插件  npm i -S hexo-related-popular-posts
   - widget: music
