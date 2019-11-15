@@ -73,6 +73,7 @@ cover:
     - name: 导航
       icon: fas fa-link
       url: others/lead.html
+      target: _blank      #通过添加target属性为“_blank"来达到新标签页打开的目的
       rel: nofollow
     - name: 关于
       icon: fas fa-info-circle
@@ -107,7 +108,7 @@ menu_mobile:
     icon: fas fa-archive
     url: archives/
     rel: nofollow
-  - name: 开源项目
+  - name: 奇奇怪怪
     icon: fas fa-code-branch
     url: projects/
   - name: 我的友链
@@ -163,7 +164,7 @@ sidebar:
         rel: nofollow
       - name: 奇奇怪怪
         icon: fas fa-code-branch
-        url: projiects/
+        url: projects/
       - name: 我的友链
         icon: fas fa-link
         url: friends/

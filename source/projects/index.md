@@ -5,6 +5,7 @@ body: [article, grid, comments]
 sidebar: false
 ---
 
-[导航页](/others/lead.html)
+<a href="/others/lead.html" target="_blank">看，这是一个定制的导航页</a>
 
-[来，干了这碗毒鸡汤](/others/dujitang.html)
+<a href="/others/dujitang.html" target="_blank">来，干了这碗毒鸡汤</a>
+
