@@ -161,9 +161,9 @@ sidebar:
         icon: fas fa-archive
         url: archives/
         rel: nofollow
-      - name: 开源项目
+      - name: 奇奇怪怪
         icon: fas fa-code-branch
-        url: projects/
+        url: projiects/
       - name: 我的友链
         icon: fas fa-link
         url: friends/
