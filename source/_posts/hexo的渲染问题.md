@@ -57,7 +57,7 @@ menu_desktop:
 
 会增加一个blog文件夹，为使各菜单也能够正确显示，有两种方式：
 
-1. 在`source`文件夹中添加`blog`文件夹，再见`catagories`文件夹及`index.md`文件放入`blog`中。  
+1. 在`source`文件夹中添加`blog`文件夹，再创建`catagories`文件夹及`index.md`文件放入`blog`中。  
 
 2. 删除`_config.yml`中的blog字段，如：
 
