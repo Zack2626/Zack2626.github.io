@@ -385,6 +385,7 @@
 <p>更改的方法就是找到原有插件中播放按钮的代码，改为上文提到的打开 <code>potplayer://+url</code> 就可以了。具体代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放</span></span><br><span class="line">$(<span class="string">'#medialist #play'</span>).off().on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url = $(<span class="keyword">this</span>).parents().find(<span class="string">'.url a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">  chrome.tabs.create(&#123;</span><br><span class="line">    url: <span class="string">"potplayer://"</span> + url</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
 <p>最后，刷新一下插件，大功告成。</p>
 <h1 id="3-后话"><a href="#3-后话" class="headerlink" title="3. 后话"></a>3. 后话</h1><p>其实，除了emby，很多别的视频流也能够通过potplayer来播放，但是现在chrome的插件库中都是提取视频链接下载视频的，却没有调用本地播放器来播放视频的，希望能够有大神解决这个问题。</p>
+<h1 id="4-存在问题"><a href="#4-存在问题" class="headerlink" title="4. 存在问题"></a>4. 存在问题</h1><p>使用一段时间后发现，这种方法只适用于H264编码的视频，对于H265(HEVC)的视频，emny会分割成多个小的ts文件来传输，而不是一整个文件，因而没办法用potplayer直接播放到底。</p>
 
       </div>
       
@@ -396,7 +397,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-12T17:47:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-12T17:59:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2020年2月12日</p>
@@ -615,7 +616,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理"><span class="toc-text">1. 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取emby视频链接"><span class="toc-text">获取emby视频链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用emby播放链接"><span class="toc-text">调用emby播放链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-利用chrome插件来简化流程"><span class="toc-text">2. 利用chrome插件来简化流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-后话"><span class="toc-text">3. 后话</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理"><span class="toc-text">1. 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取emby视频链接"><span class="toc-text">获取emby视频链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用emby播放链接"><span class="toc-text">调用emby播放链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-利用chrome插件来简化流程"><span class="toc-text">2. 利用chrome插件来简化流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-后话"><span class="toc-text">3. 后话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-存在问题"><span class="toc-text">4. 存在问题</span></a></li></ol>
     </div>
   </section>
 
