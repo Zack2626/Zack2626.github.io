@@ -386,19 +386,22 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。<br><a id="more"></a></p>
+          <p>一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。</p>
+<a id="more"></a>
+
 <h1 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h1><p>potplayer可以打开链接播放，所以只要能够获取emny的播放链接，就能够利用potplayer来播放emby视频了。<br>分析下来主要有以下几个问题需要解决：</p>
 <ol>
 <li>获取emby的视频链接</li>
 <li>如何方便地从浏览器调用emby</li>
 </ol>
-<h2 id="获取emby视频链接"><a href="#获取emby视频链接" class="headerlink" title="获取emby视频链接"></a>获取emby视频链接</h2><p>我们打开emby的一个视频，按F12打开开发者工具，就能找到视频链接，在标签下的src属性中。这样我们就获取了视频链接。</p>
-<fancybox><img src='\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox>
-
+<h2 id="获取emby视频链接"><a href="#获取emby视频链接" class="headerlink" title="获取emby视频链接"></a>获取emby视频链接</h2><p>我们打开emby的一个视频，按F12打开开发者工具，就能找到视频链接，在标签下的src属性中。这样我们就获取了视频链接。<br><fancybox><img src='\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox></p>
 <h2 id="调用emby播放链接"><a href="#调用emby播放链接" class="headerlink" title="调用emby播放链接"></a>调用emby播放链接</h2><p>potplayer自带了打开链接的功能，如下图所示，也可以参考网上用potplayer看直播的教程。</p>
-<fancybox><img src='\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox><br>这样，就完成了用potplayer播放视频，但是过程太过去繁琐。整个流程需要很多操作。都说懒是第一生产力，因而想办法简化流程。<br><br># 2. 利用chrome插件来简化流程<br>首先想到的就是利用chrome插件来自动化处理，通过插件来自动识别emby的链接，并调用potplayer播放。<br>识别链接网上有很多成功的插件；而调用potplayer，可以利用外部协议url，通过写注册表将url与本地应用程序关联。potplayer安装时自动写入了注册表，所以只需要在浏览器内输入 <code>potplayer://+url</code> 就能够利用potplayer来打开视频了，效果如下：<br><fancybox><img src='\images\调用potplayer播放emby视频\浏览器打开potplayer.png'></fancybox><br>所以只需要编写chrome插件，识别链接，并打开新标签页，就能够一步实现用potplayer看emby视频了。<br>兴奋的我立马开始研究如何写chrome插件，奈何自己没有基础，不会js，折腾了一整晚也没有成功，最后只能选择对别人的插件进行修改。（请参考<a href="https://cloud.tencent.com/developer/article/1028111" target="_blank" rel="noopener">如何修改下载的插件</a>）。<br><br>这里我选取了<a href="https://www.94cat.com/" target="_blank" rel="noopener">笨笨猫</a>编写的<a href="https://chrome.google.com/webstore/detail/%E7%8C%AB%E6%8A%93/jfedfbgedapdagkghmgibemcoggfppbb?hl=zh-CN" target="_blank" rel="noopener">猫抓</a>，这个插件能够直接获取页面上的视频链接，对于emby的链接也能够有效获取，并且对单个视频提供了调用html视频播放器播放视频的按钮，改起来也较为方便。<br>猫抓插件使用效果<br><fancybox><img src='\images\调用potplayer播放emby视频\猫抓使用效果.png'></fancybox>
+<p><fancybox><img src='\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox><br>这样，就完成了用potplayer播放视频，但是过程太过去繁琐。整个流程需要很多操作。都说懒是第一生产力，因而想办法简化流程。</p>
+<h1 id="2-利用chrome插件来简化流程"><a href="#2-利用chrome插件来简化流程" class="headerlink" title="2. 利用chrome插件来简化流程"></a>2. 利用chrome插件来简化流程</h1><p>首先想到的就是利用chrome插件来自动化处理，通过插件来自动识别emby的链接，并调用potplayer播放。<br>识别链接网上有很多成功的插件；而调用potplayer，可以利用外部协议url，通过写注册表将url与本地应用程序关联。potplayer安装时自动写入了注册表，所以只需要在浏览器内输入 <code>potplayer://+url</code> 就能够利用potplayer来打开视频了，效果如下：<br><fancybox><img src='\images\调用potplayer播放emby视频\浏览器打开potplayer.png'></fancybox><br>所以只需要编写chrome插件，识别链接，并打开新标签页，就能够一步实现用potplayer看emby视频了。<br>兴奋的我立马开始研究如何写chrome插件，奈何自己没有基础，不会js，折腾了一整晚也没有成功，最后只能选择对别人的插件进行修改。（请参考<a href="https://cloud.tencent.com/developer/article/1028111" target="_blank" rel="noopener">如何修改下载的插件</a>）。</p>
+<p>这里我选取了<a href="https://www.94cat.com/" target="_blank" rel="noopener">笨笨猫</a>编写的<a href="https://chrome.google.com/webstore/detail/%E7%8C%AB%E6%8A%93/jfedfbgedapdagkghmgibemcoggfppbb?hl=zh-CN" target="_blank" rel="noopener">猫抓</a>，这个插件能够直接获取页面上的视频链接，对于emby的链接也能够有效获取，并且对单个视频提供了调用html视频播放器播放视频的按钮，改起来也较为方便。<br>猫抓插件使用效果<br><fancybox><img src='\images\调用potplayer播放emby视频\猫抓使用效果.png'></fancybox></p>
+<p>更改的方法就是找到原有插件中播放按钮的代码，改为上文提到的打开 <code>potplayer://+url</code> 就可以了。具体代码如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放</span></span><br><span class="line">$(<span class="string">'#medialist #play'</span>).off().on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url = $(<span class="keyword">this</span>).parents().find(<span class="string">'.url a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">  chrome.tabs.create(&#123;</span><br><span class="line">    url: <span class="string">"potplayer://"</span> + url</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 
-<p>更改的方法就是找到原有插件中播放按钮的代码，改为上文提到的打开 <code>potplayer://+url</code> 就可以了。具体代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放</span></span><br><span class="line">$(<span class="string">'#medialist #play'</span>).off().on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url = $(<span class="keyword">this</span>).parents().find(<span class="string">'.url a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">  chrome.tabs.create(&#123;</span><br><span class="line">    url: <span class="string">"potplayer://"</span> + url</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
 <p>最后，刷新一下插件，大功告成。</p>
 <h1 id="3-后话"><a href="#3-后话" class="headerlink" title="3. 后话"></a>3. 后话</h1><p>其实，除了emby，很多别的视频流也能够通过potplayer来播放，但是现在chrome的插件库中都是提取视频链接下载视频的，却没有调用本地播放器来播放视频的，希望能够有大神解决这个问题。</p>
 <h1 id="4-存在问题"><a href="#4-存在问题" class="headerlink" title="4. 存在问题"></a>4. 存在问题</h1><p>使用一段时间后发现，这种方法只适用于H264编码的视频，对于H265(HEVC)的视频，emny会分割成多个小的ts文件来传输，而不是一整个文件，因而没办法用potplayer直接播放到底。</p>
@@ -480,10 +483,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-18T18:41:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-19T01:00:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月18日</p>
+    <p>更新于 2020年2月19日</p>
   </a>
 </div>
 
@@ -699,7 +702,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理"><span class="toc-text">1. 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取emby视频链接"><span class="toc-text">获取emby视频链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用emby播放链接"><span class="toc-text">调用emby播放链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-后话"><span class="toc-text">3. 后话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-存在问题"><span class="toc-text">4. 存在问题</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理"><span class="toc-text">1. 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取emby视频链接"><span class="toc-text">获取emby视频链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用emby播放链接"><span class="toc-text">调用emby播放链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-利用chrome插件来简化流程"><span class="toc-text">2. 利用chrome插件来简化流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-后话"><span class="toc-text">3. 后话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-存在问题"><span class="toc-text">4. 存在问题</span></a></li></ol>
     </div>
   </section>
 
