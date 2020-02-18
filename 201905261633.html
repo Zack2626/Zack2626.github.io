@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>调用poplayer播放emby | 三零八的酸甜苦辣</title>
+  <title>我那个叫小黑的朋友 | 三零八的酸甜苦辣</title>
   
   
 
@@ -304,8 +304,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/">
-        调用poplayer播放emby
+      <a href="/201905261633.html">
+        我那个叫小黑的朋友
       </a>
     </h1>
   
@@ -336,7 +336,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-02-12</p>
+    <p>2019-05-26</p>
   </a>
 </div>
 
@@ -344,6 +344,14 @@
         
           
             
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E7%94%9F%E6%B4%BB/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>生活</p>
+    </a>
+  </div>
+
 
           
         
@@ -386,22 +394,21 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。<br><a id="more"></a></p>
-<h1 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h1><p>potplayer可以打开链接播放，所以只要能够获取emny的播放链接，就能够利用potplayer来播放emby视频了。<br>分析下来主要有以下几个问题需要解决：</p>
-<ol>
-<li>获取emby的视频链接</li>
-<li>如何方便地从浏览器调用emby</li>
-</ol>
-<h2 id="获取emby视频链接"><a href="#获取emby视频链接" class="headerlink" title="获取emby视频链接"></a>获取emby视频链接</h2><p>我们打开emby的一个视频，按F12打开开发者工具，就能找到视频链接，在标签下的src属性中。这样我们就获取了视频链接。</p>
-<fancybox><img src='\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox>
-
-<h2 id="调用emby播放链接"><a href="#调用emby播放链接" class="headerlink" title="调用emby播放链接"></a>调用emby播放链接</h2><p>potplayer自带了打开链接的功能，如下图所示，也可以参考网上用potplayer看直播的教程。</p>
-<fancybox><img src='\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox><br>这样，就完成了用potplayer播放视频，但是过程太过去繁琐。整个流程需要很多操作。都说懒是第一生产力，因而想办法简化流程。<br><br># 2. 利用chrome插件来简化流程<br>首先想到的就是利用chrome插件来自动化处理，通过插件来自动识别emby的链接，并调用potplayer播放。<br>识别链接网上有很多成功的插件；而调用potplayer，可以利用外部协议url，通过写注册表将url与本地应用程序关联。potplayer安装时自动写入了注册表，所以只需要在浏览器内输入 <code>potplayer://+url</code> 就能够利用potplayer来打开视频了，效果如下：<br><fancybox><img src='\images\调用potplayer播放emby视频\浏览器打开potplayer.png'></fancybox><br>所以只需要编写chrome插件，识别链接，并打开新标签页，就能够一步实现用potplayer看emby视频了。<br>兴奋的我立马开始研究如何写chrome插件，奈何自己没有基础，不会js，折腾了一整晚也没有成功，最后只能选择对别人的插件进行修改。（请参考<a href="https://cloud.tencent.com/developer/article/1028111" target="_blank" rel="noopener">如何修改下载的插件</a>）。<br><br>这里我选取了<a href="https://www.94cat.com/" target="_blank" rel="noopener">笨笨猫</a>编写的<a href="https://chrome.google.com/webstore/detail/%E7%8C%AB%E6%8A%93/jfedfbgedapdagkghmgibemcoggfppbb?hl=zh-CN" target="_blank" rel="noopener">猫抓</a>，这个插件能够直接获取页面上的视频链接，对于emby的链接也能够有效获取，并且对单个视频提供了调用html视频播放器播放视频的按钮，改起来也较为方便。<br>猫抓插件使用效果<br><fancybox><img src='\images\调用potplayer播放emby视频\猫抓使用效果.png'></fancybox>
-
-<p>更改的方法就是找到原有插件中播放按钮的代码，改为上文提到的打开 <code>potplayer://+url</code> 就可以了。具体代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放</span></span><br><span class="line">$(<span class="string">'#medialist #play'</span>).off().on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url = $(<span class="keyword">this</span>).parents().find(<span class="string">'.url a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">  chrome.tabs.create(&#123;</span><br><span class="line">    url: <span class="string">"potplayer://"</span> + url</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
-<p>最后，刷新一下插件，大功告成。</p>
-<h1 id="3-后话"><a href="#3-后话" class="headerlink" title="3. 后话"></a>3. 后话</h1><p>其实，除了emby，很多别的视频流也能够通过potplayer来播放，但是现在chrome的插件库中都是提取视频链接下载视频的，却没有调用本地播放器来播放视频的，希望能够有大神解决这个问题。</p>
-<h1 id="4-存在问题"><a href="#4-存在问题" class="headerlink" title="4. 存在问题"></a>4. 存在问题</h1><p>使用一段时间后发现，这种方法只适用于H264编码的视频，对于H265(HEVC)的视频，emny会分割成多个小的ts文件来传输，而不是一整个文件，因而没办法用potplayer直接播放到底。</p>
+          <blockquote>
+<p>‘我有个朋友叫小黑。你没有猜错，就是比较黑，所以才叫小黑。</p>
+</blockquote>
+<p>小黑是个神奇的人物。是我身边不多几个由<strong>屌丝</strong><br>奋斗变成<strong>高富帅</strong>的人。</p>
+<hr>
+<a id="more"></a>
+<h2 id="我哩个乖"><a href="#我哩个乖" class="headerlink" title="我哩个乖"></a>我哩个乖</h2><p>如果把我认识的小黑分成三个阶段。那么我想为第一个阶段起名<code>我哩个乖</code>。<br>第一次见到小黑时，他是个淳朴的乡村孩子，操着一口亲切的“我哩个乖”。那时的我还不知道这句话在皖北的流行程度，我第一次听到“我哩个乖”这句口头禅时，就觉得这句话很牛逼。尤其是从小黑口中蹦出的“我哩个乖”，淳朴中带着一丝逗逼，早在当年我就看出他会是逗逼界的可塑之才。<br>后来，我慢慢发现“我哩个乖”远比我想象地要<del>牛逼</del>厉害，它可以表示惊讶，可以表示兴奋，可以表示愤怒，可以表示各种情绪，简直就像万能的<code>kao</code>一样。当我听到小黑和他老乡单单通过这句话完成一整段通话时，我对这句口头禅更是佩服得五体投地。<br>“我哩个乖”很好地体现了小黑当初的<del>逗逼</del>淳朴形象。这份淳朴可能让小黑闹了很多笑话，吃了很多不必要的亏。但也是这份淳朴让小黑能够为断腿的同学连续送两个月的饭。</p>
+<hr>
+<h2 id="你的裤子不错！"><a href="#你的裤子不错！" class="headerlink" title="你的裤子不错！"></a>你的裤子不错！</h2><blockquote>
+<p>小黑：你的裤子不错！<br>友人A：“恩，谢谢。”<br>两分钟后<br>小黑：“你今天裤子挺好看的。<br>友人A看了看自己穿了好几天的裤子：“恩，我知道了。”<br>又两分钟后<br>小黑：“你就没有什么要和我说的吗？”<br>友人A思考了许久：“你的裤子不错？”<br>小黑相当兴奋，“你终于看到我的新裤子啦！”</p>
+</blockquote>
+<p>从此，我对小黑刮目相看。<br>不知道从什么时候开始，小黑变了。以前的小黑给人最大的印象是淳朴，进化后的小黑，给人的印象则是逗逼。当然小黑进化的不仅仅是逗逼能力。当我听闻小黑在数学竞赛得奖的时候，我才发现，小黑的进化是全方面的。<br>其实我一直不知道小黑蜕变的契机是什么？是远超常人的努力？还是异于常人的天赋？可能两者都有。<br>我记得高中时我们班有一个很<del>牛逼</del>厉害的同学：在我们刚开始复习时，他已经把整套龙门专题数学都看完了，那时候我连龙门是啥都不知道；作为物理班的同学，分班后仍然能够代表学校参加化学竞赛获奖，兼职是神一样的存在。最恐怖的是，这么牛逼的任务，已经拉开我们那么多了，还比我们努力，高三前那个暑假刷了n多复习资料，不服不行。小黑可能也是这样的人。或者说，是个<strong>低配版的厉害的同学？</strong></p>
+<hr>
+<p>to be continue</p>
+<p>PS，小黑目前单身，预购从速！<br>感兴趣的可以直接在评论区留言。<br>2016.11.11更新：此款宝贝已下架！</p>
 
           
             <br>
@@ -438,7 +445,7 @@
       
         <p>
           
-            本文永久链接是：<a href=https://blog.mrjiumi.cn/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/>https://blog.mrjiumi.cn/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/<a>
+            本文永久链接是：<a href=https://blog.mrjiumi.cn/201905261633.html>https://blog.mrjiumi.cn/201905261633.html<a>
           
         </p>
       
@@ -480,10 +487,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-18T18:41:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-08T23:23:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月18日</p>
+    <p>更新于 2020年2月8日</p>
   </a>
 </div>
 
@@ -492,7 +499,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/emby/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>emby</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B0%8F%E9%BB%91/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>小黑</p></a></div>
 
 
         
@@ -505,7 +512,11 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.mrjiumi.cn/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/&title=调用poplayer播放emby | 三零八的酸甜苦辣&summary=一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.mrjiumi.cn/201905261633.html&title=我那个叫小黑的朋友 | 三零八的酸甜苦辣&summary=
+‘我有个朋友叫小黑。你没有猜错，就是比较黑，所以才叫小黑。
+
+小黑是个神奇的人物。是我身边不多几个由屌丝奋斗变成高富帅的人。
+"
           
           >
           
@@ -517,7 +528,11 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.mrjiumi.cn/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/&title=调用poplayer播放emby | 三零八的酸甜苦辣&summary=一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.mrjiumi.cn/201905261633.html&title=我那个叫小黑的朋友 | 三零八的酸甜苦辣&summary=
+‘我有个朋友叫小黑。你没有猜错，就是比较黑，所以才叫小黑。
+
+小黑是个神奇的人物。是我身边不多几个由屌丝奋斗变成高富帅的人。
+"
           
           >
           
@@ -529,7 +544,11 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://blog.mrjiumi.cn/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/&title=调用poplayer播放emby | 三零八的酸甜苦辣&summary=一直使用emby，主要是因为免费，虽然更新到4.0之后免费版已经不能硬解了，但好在我网速还行，看的视频码率比较低，不需要转码播放。但最近更新之后，网页版的播放体验越来越差了，这菜单贼老大，菜单隐藏情况下还不能通过按键来调节进度，所以尝试用potplayer来播放emby视频。"
+          href="http://service.weibo.com/share/share.php?url=https://blog.mrjiumi.cn/201905261633.html&title=我那个叫小黑的朋友 | 三零八的酸甜苦辣&summary=
+‘我有个朋友叫小黑。你没有猜错，就是比较黑，所以才叫小黑。
+
+小黑是个神奇的人物。是我身边不多几个由屌丝奋斗变成高富帅的人。
+"
           
           >
           
@@ -553,21 +572,40 @@
         
             <div class="prev-next">
                 
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/201906091500.html" rel="prev" title="通过车辆位置数据来统计交通量">
+                                  
+                                      通过车辆位置数据来统计交通量
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/%E4%BA%A4%E9%80%9A/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 交通</a> <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 数据处理</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/" rel="prev" title="hexo的渲染问题">
+                                <a href="/201905261251.html" rel="prev" title="gitee pages无法deploy的问题">
                                     
-                                        hexo的渲染问题
+                                        gitee pages无法deploy的问题
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/hexo/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> hexo</a>
+                                    <a class="tag" href="/tags/gitee/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> gitee</a> <a class="tag" href="/tags/hexo/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> hexo</a>
                                 </h6>
                             
                         </span>
@@ -598,7 +636,7 @@
 
   <script>
     window.subData = {
-      title: '调用poplayer播放emby',
+      title: '我那个叫小黑的朋友',
       tools: true
     }
   </script>
@@ -699,7 +737,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-原理"><span class="toc-text">1. 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取emby视频链接"><span class="toc-text">获取emby视频链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用emby播放链接"><span class="toc-text">调用emby播放链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-后话"><span class="toc-text">3. 后话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-存在问题"><span class="toc-text">4. 存在问题</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#我哩个乖"><span class="toc-text">我哩个乖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你的裤子不错！"><span class="toc-text">你的裤子不错！</span></a></li></ol>
     </div>
   </section>
 

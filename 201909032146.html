@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>通过车辆位置数据来统计交通量 | 三零八的酸甜苦辣</title>
+  <title>远程桌面——随时随地操控家里的电脑 | 三零八的酸甜苦辣</title>
   
   
 
@@ -46,7 +46,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover article half'>
+    <cover class='cover post half'>
       
         
   <h1 class='title'>三零八的酸甜苦辣</h1>
@@ -292,7 +292,7 @@
   
 
   
-    <article id="article" class="post white-box article-type-article" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -304,8 +304,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/06/09/%E9%80%9A%E8%BF%87%E8%BD%A6%E8%BE%86%E4%BD%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%9D%A5%E7%BB%9F%E8%AE%A1%E4%BA%A4%E9%80%9A%E9%87%8F/">
-        通过车辆位置数据来统计交通量
+      <a href="/201909032146.html">
+        远程桌面——随时随地操控家里的电脑
       </a>
     </h1>
   
@@ -336,7 +336,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-09</p>
+    <p>2019-09-03</p>
   </a>
 </div>
 
@@ -346,9 +346,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E4%BA%A4%E9%80%9A/' rel="nofollow">
+    <a href='/categories/%E5%BB%BA%E7%AB%99/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>交通</p>
+      <p>建站</p>
     </a>
   </div>
 
@@ -394,43 +394,176 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>以往的交通调查往往通过人工方式，在需要调查的交叉口安排调查人员，统计经过的车辆数。费时费力，效率低，成本高。<br>现在摄像头运用越来越广，交叉口基本都布设的摄像头。并通过强大的图像识别算法能够记录交叉口的车辆信息，包括车牌号、车型等。<br>因而考虑是否可以通过利用区域内所有交叉口的摄像头，识别车辆位置信息，计算车辆的路径，并基于车辆路径来统计交通量。</p>
+          <p>你有没有这种困扰，笔记本性能不够，不能够运行你所需要的软件，而台式机又不能随身携带。这种时候，远程桌面是解决你困扰的好方法。</p>
 <a id="more"></a>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>本文基于之前</p>
-<h2 id="1-原始数据介绍"><a href="#1-原始数据介绍" class="headerlink" title="1. 原始数据介绍"></a>1. 原始数据介绍</h2><p>我拿到手的数据已经经过处理，处理的过程主要是通过软件来对交叉口的路线进行车辆识别，最终导出车辆的交叉口位置表，表结构大致如下。  </p>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>plate_no</th>
-<th>veh_type</th>
-<th>pass_time</th>
-<th>c_name</th>
-<th>direction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>001</td>
-<td>车牌A</td>
-<td>车型</td>
-<td>时间A</td>
-<td>交叉口A</td>
-<td>朝向</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-对数据进行预处理"><a href="#2-对数据进行预处理" class="headerlink" title="2. 对数据进行预处理"></a>2. 对数据进行预处理</h2><p>原始数据中存在一些问题，比如车型分类过细，交叉口存在重复命名，朝向存在重复明明，<code>pass_time</code>字段为字符串格式等。</p>
+<h2 id="1-为什么用远程桌面，而不用Teamviewer-向日葵-QQ远程控制"><a href="#1-为什么用远程桌面，而不用Teamviewer-向日葵-QQ远程控制" class="headerlink" title="1. 为什么用远程桌面，而不用Teamviewer/向日葵/QQ远程控制"></a>1. 为什么用远程桌面，而不用Teamviewer/向日葵/QQ远程控制</h2><p>目前市场上有许多远程控制的软件，包括Teamviewer、向日葵、QQ远程控制等等。但这些软件有一定的缺陷。</p>
 <ol>
-<li>将原始数据导入oracle数据库中，注意选择数据类型</li>
-<li>利用<code>replace</code>，<code>case when</code>，<code>substr</code>等函数对原始数据进行预处理，并实现时间段的分类<br>交通调查一般只取早晚高峰的小时流量。</li>
-<li><p>利用<code>listagg</code>函数来实现按车辆统计路径</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listagg(c_name) within group (order by pass_time_ss) c_list</span><br><span class="line">from xxx group by plate_no</span><br></pre></td></tr></table></figure>
+<li><p>收费<br>对于一个我这种穷人来说，能不花钱解决的问题一律不花一分钱。如果你能接受的花钱的话，Teamviewer和向日葵这些软件是相当优异的，能狗实现无人值守，甚至内网穿透。即装即用，十分便捷。如果你和我一样，不能接受收费软件，那就只能自己折腾。</p>
+</li>
+<li><p>无法实现无人值守<br>免费软件如QQ远程桌面等安装便捷，也不需要调试，但是它无法实现无人值守。远程控制时需要被控制电脑点击接受方可操作。存在较大的局限性。</p>
 </li>
 </ol>
-<h2 id="3-通过路径来计算交叉口流量"><a href="#3-通过路径来计算交叉口流量" class="headerlink" title="3. 通过路径来计算交叉口流量"></a>3. 通过路径来计算交叉口流量</h2>
+<p>因而推荐使用免费的RDP（Remote Desktop Protocol）软件，其实RDP软件也有很多种。鉴于微软在windows上自带了《远程桌面》，推荐直接选用了系统自带的<code>远程桌面</code>。</p>
+<h2 id="2-基本要求"><a href="#2-基本要求" class="headerlink" title="2. 基本要求"></a>2. 基本要求</h2><h3 id="2-1-windows专业版"><a href="#2-1-windows专业版" class="headerlink" title="2.1. windows专业版"></a>2.1. windows专业版</h3><p>windows普通家庭版不支持远程桌面，因而被操作端的电脑必须是Windows企业版之类的。<br><em>别的版本我没有测试过，大家可以自行尝试或者百度</em></p>
+<h3 id="2-2-外网可访问"><a href="#2-2-外网可访问" class="headerlink" title="2.2 外网可访问"></a>2.2 外网可访问</h3><p>为了能实现随时随地远程操作，必须要保证在外网环境可以访问你的电脑，分为两种情况。</p>
+<ul>
+<li><p>有公网IP&amp;端口转发<br>——如果你的网络有公网IP，且你有操控设置端口转发的权力，那么恭喜你，你选到了easy难度。只需简单操作就能实现远程访问了。</p>
+</li>
+<li><p>无公网IP&amp;端口转发<br>——如果你的网络没有公网IP，或者你没有路由的控制权限，无法设置端口转发，那么你只能通过<code>内网穿透</code>的方法来实现了，难度比较大，网速也可能会有一定影响，但至少你还是可以实现功能的。</p>
+</li>
+</ul>
+<h2 id="3-windows开启远程桌面"><a href="#3-windows开启远程桌面" class="headerlink" title="3. windows开启远程桌面"></a>3. windows开启远程桌面</h2><h3 id="3-1-windows设置"><a href="#3-1-windows设置" class="headerlink" title="3.1 windows设置"></a>3.1 windows设置</h3><p>由于远程桌面是Windows内置的软件，因而开启十分方便，在设置界面中选择<code>系统——远程桌面</code>就可以了.</p>
+<ol start="2">
+<li>无法实现无人值守<br>免费软件如QQ远程桌面等安装便捷，也不需要调试，但是它无法实现无人值守。远程控制时需要被控制电脑点击接受方可操作。存在较大的局限性。<br>因而推荐使用免费的RDP（Remote Desktop Protocol）软件，其实RDP软件也有很多种。鉴于微软在windows上自带了《远程桌面》，推荐直接选用了系统自带的 <strong>《远程桌面》</strong>。</li>
+</ol>
+<p><img src="/images/20190903/开启远程桌面.jpg" alt="开启远程桌面"></p>
+
+          
+            <br>
+            
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  <section class='widget copyright'>
+  <div class='content pure'>
+    <blockquote>
+      
+        <p>
+          
+            感谢阅读<br>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议
+          
+        </p>
+      
+        <p>
+          
+            
+          
+        </p>
+      
+        <p>
+          
+            本文永久链接是：<a href=https://blog.mrjiumi.cn/201909032146.html>https://blog.mrjiumi.cn/201909032146.html<a>
+          
+        </p>
+      
+    </blockquote>
+  </div>
+</section>
+
+                
+              
+                
+              
+            
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+            
           
         </div>
+        
+          <br>
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-08T23:23:05+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年2月8日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>远程桌面</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.mrjiumi.cn/201909032146.html&title=远程桌面——随时随地操控家里的电脑 | 三零八的酸甜苦辣&summary=你有没有这种困扰，笔记本性能不够，不能够运行你所需要的软件，而台式机又不能随身携带。这种时候，远程桌面是解决你困扰的好方法。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.mrjiumi.cn/201909032146.html&title=远程桌面——随时随地操控家里的电脑 | 三零八的酸甜苦辣&summary=你有没有这种困扰，笔记本性能不够，不能够运行你所需要的软件，而台式机又不能随身携带。这种时候，远程桌面是解决你困扰的好方法。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://blog.mrjiumi.cn/201909032146.html&title=远程桌面——随时随地操控家里的电脑 | 三零八的酸甜苦辣&summary=你有没有这种困扰，笔记本性能不够，不能够运行你所需要的软件，而台式机又不能随身携带。这种时候，远程桌面是解决你困扰的好方法。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
         
         
             <div class="prev-next">
@@ -439,16 +572,16 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/2019/09/03/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E2%80%94%E2%80%94%E9%9A%8F%E6%97%B6%E9%9A%8F%E5%9C%B0%E6%93%8D%E6%8E%A7%E5%AE%B6%E9%87%8C%E7%9A%84%E7%94%B5%E8%84%91%E2%80%9C/" rel="prev" title="远程桌面——随时随地操控家里的电脑">
+                                <a href="/201910272343.html" rel="prev" title="hexo安装与迁移">
                                   
-                                      远程桌面——随时随地操控家里的电脑
+                                      hexo安装与迁移
                                   
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 远程桌面</a>
+                                    <a class="tag" href="/tags/hexo/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> hexo</a>
                                 </h6>
                             
                         </span>
@@ -459,16 +592,16 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019/05/26/%E6%88%91%E9%82%A3%E4%B8%AA%E5%8F%AB%E5%B0%8F%E9%BB%91%E7%9A%84%E6%9C%8B%E5%8F%8B/" rel="prev" title="我那个叫小黑的朋友">
+                                <a href="/201906091500.html" rel="prev" title="通过车辆位置数据来统计交通量">
                                     
-                                        我那个叫小黑的朋友
+                                        通过车辆位置数据来统计交通量
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/%E5%B0%8F%E9%BB%91/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 小黑</a>
+                                    <a class="tag" href="/tags/%E4%BA%A4%E9%80%9A/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 交通</a> <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 数据处理</a>
                                 </h6>
                             
                         </span>
@@ -496,6 +629,13 @@
 <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
+
+  <script>
+    window.subData = {
+      title: '远程桌面——随时随地操控家里的电脑',
+      tools: true
+    }
+  </script>
 
 
 </div>
@@ -584,6 +724,19 @@
       
         
           
+  <section class='widget toc-wrapper'>
+    <header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-为什么用远程桌面，而不用Teamviewer-向日葵-QQ远程控制"><span class="toc-text">1. 为什么用远程桌面，而不用Teamviewer&#x2F;向日葵&#x2F;QQ远程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基本要求"><span class="toc-text">2. 基本要求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-windows专业版"><span class="toc-text">2.1. windows专业版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-外网可访问"><span class="toc-text">2.2 外网可访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-windows开启远程桌面"><span class="toc-text">3. windows开启远程桌面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-windows设置"><span class="toc-text">3.1 windows设置</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
         
       

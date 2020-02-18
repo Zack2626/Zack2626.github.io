@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>hexo的渲染问题 | 三零八的酸甜苦辣</title>
+  <title>gitee pages无法deploy的问题 | 三零八的酸甜苦辣</title>
   
   
 
@@ -304,8 +304,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/">
-        hexo的渲染问题
+      <a href="/201905261251.html">
+        gitee pages无法deploy的问题
       </a>
     </h1>
   
@@ -336,7 +336,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-03</p>
+    <p>2019-05-26</p>
   </a>
 </div>
 
@@ -394,28 +394,29 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>记录在修改主题时碰到的<em>奇怪</em>的问题<br><a id="more"></a></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>hexo默认会渲染<code>/source/</code>文件夹中所有的md和html文件，为了解决这个问题，hexo提供了以下两种解决方法；</p>
-<ol>
-<li><p>通过在<code>_config.yml&#39;中添加</code>skip_render`字段来避免对于这类文件的渲染，如  </p>
- <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">skip_render:</span> <span class="string">XXX/*</span></span><br></pre></td></tr></table></figure>
+          <p>目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。<br>然而在电脑上通过<code>hexo deploy</code>命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 </p>
+<a id="more"></a>
+<h2 id="创建过程"><a href="#创建过程" class="headerlink" title="创建过程"></a>创建过程</h2><ol>
+<li>在gitee上导入github仓库</li>
+<li>设定pages的分支</li>
+<li><p>本地git增加gitee的远程仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> add remote [remote name] [remote url]</span><br></pre></td></tr></table></figure>
+<p> 只是部署的话并不需要添加远程仓库</p>
 </li>
-<li><p>通过在文件的头部添加<code>layout</code>字段来阻止渲染，如</p>
- <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">layout:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">XXX</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tag_a</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tag_b</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然而在这次问题中，两种方式都无法解决渲染的问题。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>最后发现是`themes/material-X/_config.yml’的问题。material-X中默认的sidebar设置是这样的：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu_desktop:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">示例</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-grin</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">/</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">分类</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-folder-open</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">blog/categories/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">标签</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-hashtag</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">blog/tags/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">归档</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-archive</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">blog/archives/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br></pre></td></tr></table></figure>
-<p>会增加一个blog文件夹，为使各菜单也能够正确显示，有两种方式：</p>
-<ol>
-<li><p>在<code>source</code>文件夹中添加<code>blog</code>文件夹，再创建<code>catagories</code>文件夹及<code>index.md</code>文件放入<code>blog</code>中。  </p>
-</li>
-<li><p>删除<code>_config.yml</code>中的blog字段，如：</p>
- <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu_desktop:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">首页</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-grin</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">/</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">分类</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-folder-open</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">categories/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">标签</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-hashtag</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">tags/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">归档</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fas</span> <span class="string">fa-archive</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">archives/</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">nofollow</span></span><br></pre></td></tr></table></figure>
+<li><p>在_config.yml中添加deploy信息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo:</span><br><span class="line">    [name1]: [url],[branch]</span><br><span class="line">    [name2]: [url],[branch]</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>实测，使用方案1会导致停止渲染失效，使用方案二则完美解决该问题。</p>
+<h2 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h2><p>deploy后网页不更新</p>
+<ul>
+<li><p>github pages页面<br><img src="/images/github.png" alt="github pages"></p>
+</li>
+<li><p>gitee pages页面<br><img src="/images/gitee.png" alt="gitee pages"></p>
+</li>
+</ul>
+<p>添加新文章后，也不会增加新文章。但是查看仓库，发现仓库已经更新，只是网页没有重新部署。</p>
+<h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><p>在<code>gitee——服务——Gitee Pages</code>中选择<code>重新部署</code>，网页更新。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>发现gitee pages和github不同，自动部署需要Gitee Pages Pro.<br><img src="/images/gitee_pages_pro.png" alt="gitee pages pro"></p>
 
           
             <br>
@@ -452,7 +453,7 @@
       
         <p>
           
-            本文永久链接是：<a href=https://blog.mrjiumi.cn/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/>https://blog.mrjiumi.cn/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/<a>
+            本文永久链接是：<a href=https://blog.mrjiumi.cn/201905261251.html>https://blog.mrjiumi.cn/201905261251.html<a>
           
         </p>
       
@@ -506,7 +507,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hexo/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>hexo</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/gitee/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>gitee</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hexo/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>hexo</p></a></div>
 
 
         
@@ -519,7 +520,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.mrjiumi.cn/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/&title=hexo的渲染问题 | 三零八的酸甜苦辣&summary=记录在修改主题时碰到的奇怪的问题"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.mrjiumi.cn/201905261251.html&title=gitee pages无法deploy的问题 | 三零八的酸甜苦辣&summary=目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。然而在电脑上通过hexo deploy命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 "
           
           >
           
@@ -531,7 +532,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.mrjiumi.cn/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/&title=hexo的渲染问题 | 三零八的酸甜苦辣&summary=记录在修改主题时碰到的奇怪的问题"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.mrjiumi.cn/201905261251.html&title=gitee pages无法deploy的问题 | 三零八的酸甜苦辣&summary=目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。然而在电脑上通过hexo deploy命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 "
           
           >
           
@@ -543,7 +544,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://blog.mrjiumi.cn/2019/11/03/hexo%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/&title=hexo的渲染问题 | 三零八的酸甜苦辣&summary=记录在修改主题时碰到的奇怪的问题"
+          href="http://service.weibo.com/share/share.php?url=https://blog.mrjiumi.cn/201905261251.html&title=gitee pages无法deploy的问题 | 三零八的酸甜苦辣&summary=目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。然而在电脑上通过hexo deploy命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 "
           
           >
           
@@ -571,16 +572,16 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/2020/02/12/%E8%B0%83%E7%94%A8poplayer%E6%92%AD%E6%94%BEemby/" rel="prev" title="调用poplayer播放emby">
+                                <a href="/201905261633.html" rel="prev" title="我那个叫小黑的朋友">
                                   
-                                      调用poplayer播放emby
+                                      我那个叫小黑的朋友
                                   
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/emby/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> emby</a>
+                                    <a class="tag" href="/tags/%E5%B0%8F%E9%BB%91/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 小黑</a>
                                 </h6>
                             
                         </span>
@@ -591,17 +592,12 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019/10/27/hexo%E5%AE%89%E8%A3%85%E4%B8%8E%E8%BF%81%E7%A7%BB/" rel="prev" title="hexo安装与迁移">
+                                <a href="/201904181708.html" rel="prev" title="第一篇文章">
                                     
-                                        hexo安装与迁移
+                                        第一篇文章
                                     
                                 </a>
                             </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/hexo/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> hexo</a>
-                                </h6>
                             
                         </span>
                     </section>
@@ -631,7 +627,7 @@
 
   <script>
     window.subData = {
-      title: 'hexo的渲染问题',
+      title: 'gitee pages无法deploy的问题',
       tools: true
     }
   </script>
@@ -732,7 +728,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建过程"><span class="toc-text">创建过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#出现的问题"><span class="toc-text">出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
     </div>
   </section>
 
