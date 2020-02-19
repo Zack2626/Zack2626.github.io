@@ -396,15 +396,20 @@
           
           <p>目前hexo主要的用途在于做了一个静态页面个手机浏览器做导航。因而对于访问的速度要求比较高。手机打开github pages时会比较慢，因而在gitee上也部署了hexo。<br>然而在电脑上通过<code>hexo deploy</code>命令部署网页时，github pages能顺利更新，gitee pages并没有更新。 </p>
 <a id="more"></a>
+
 <h2 id="创建过程"><a href="#创建过程" class="headerlink" title="创建过程"></a>创建过程</h2><ol>
-<li>在gitee上导入github仓库</li>
-<li>设定pages的分支</li>
+<li><p>在gitee上导入github仓库</p>
+</li>
+<li><p>设定pages的分支</p>
+</li>
 <li><p>本地git增加gitee的远程仓库</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> add remote [remote name] [remote url]</span><br></pre></td></tr></table></figure>
+
 <p> 只是部署的话并不需要添加远程仓库</p>
 </li>
 <li><p>在_config.yml中添加deploy信息</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo:</span><br><span class="line">    [name1]: [url],[branch]</span><br><span class="line">    [name2]: [url],[branch]</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h2 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h2><p>deploy后网页不更新</p>

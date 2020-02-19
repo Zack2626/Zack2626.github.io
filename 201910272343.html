@@ -396,9 +396,13 @@
           
           <p>记录一下hexo安装与迁移过程中遇到的坑。</p>
 <a id="more"></a>
+
 <h1 id="1-hexo的基础用法"><a href="#1-hexo的基础用法" class="headerlink" title="1. hexo的基础用法"></a>1. hexo的基础用法</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装hexo，参考<a href="https://hexo.io/zh-cn/docs/#%E5%AE%89%E8%A3%85-Hexo" target="_blank" rel="noopener">hexo官网</a><br>在 <code>_config.yml</code> 中添加deploy参数：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type:git</span><br><span class="line">	repo:</span><br><span class="line">		github1: [url1],[branch]</span><br><span class="line">		github2: [url2],[branch]</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo init             <span class="comment">#在当前文件夹下面创建hexo网站</span></span><br><span class="line">hexo server -p xxxx   <span class="comment">#创建本地服务器</span></span><br><span class="line">hexo generate         <span class="comment">#生成hexo网页内容</span></span><br><span class="line">hexo deploy           <span class="comment">#将当前的内容发布到_config.yml中的delpoy网站</span></span><br><span class="line">hexo g -d             <span class="comment">#生成并发布</span></span><br><span class="line">hexo d -g             <span class="comment">#生成并发布</span></span><br><span class="line">hexo new [title]      <span class="comment">#新建一篇名为title的文章</span></span><br></pre></td></tr></table></figure>
+
+
 <h1 id="2-hexo与hexo-cli的区别"><a href="#2-hexo与hexo-cli的区别" class="headerlink" title="2. hexo与hexo-cli的区别"></a>2. hexo与hexo-cli的区别</h1><h3 id="部署时的问题"><a href="#部署时的问题" class="headerlink" title="部署时的问题"></a>部署时的问题</h3><p>部署时，按照<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo.io</a>的教程，安装完git和node.js后，用语句<code>npm install -g hexo-cli</code>安装了hexo。但是部署了出现了错误，deploy后网站首页变成了错误文字。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在解决这个问题时发现，有hexo和hexo-cli两个库，hexo自带deploy工具，而hexo-cli还需要安装<code>hexo-deployer-git</code>库来实现通过git部署网站。<br>最终，安装hexo后，解决了部署出错的问题。</p>
 <p><strong>这只是一种猜测，具体原因还有待研究</strong><br>**</p>

@@ -396,6 +396,7 @@
           
           <p>以往的交通调查往往通过人工方式，在需要调查的交叉口安排调查人员，统计经过的车辆数。费时费力，效率低，成本高。<br>现在摄像头运用越来越广，交叉口基本都布设的摄像头。并通过强大的图像识别算法能够记录交叉口的车辆信息，包括车牌号、车型等。<br>因而考虑是否可以通过利用区域内所有交叉口的摄像头，识别车辆位置信息，计算车辆的路径，并基于车辆路径来统计交通量。</p>
 <a id="more"></a>
+
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>本文基于之前</p>
 <h2 id="1-原始数据介绍"><a href="#1-原始数据介绍" class="headerlink" title="1. 原始数据介绍"></a>1. 原始数据介绍</h2><p>我拿到手的数据已经经过处理，处理的过程主要是通过软件来对交叉口的路线进行车辆识别，最终导出车辆的交叉口位置表，表结构大致如下。  </p>
 <table>
@@ -409,8 +410,7 @@
 <th>direction</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>001</td>
 <td>车牌A</td>
 <td>车型</td>
@@ -418,14 +418,16 @@
 <td>交叉口A</td>
 <td>朝向</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="2-对数据进行预处理"><a href="#2-对数据进行预处理" class="headerlink" title="2. 对数据进行预处理"></a>2. 对数据进行预处理</h2><p>原始数据中存在一些问题，比如车型分类过细，交叉口存在重复命名，朝向存在重复明明，<code>pass_time</code>字段为字符串格式等。</p>
 <ol>
-<li>将原始数据导入oracle数据库中，注意选择数据类型</li>
-<li>利用<code>replace</code>，<code>case when</code>，<code>substr</code>等函数对原始数据进行预处理，并实现时间段的分类<br>交通调查一般只取早晚高峰的小时流量。</li>
+<li><p>将原始数据导入oracle数据库中，注意选择数据类型</p>
+</li>
+<li><p>利用<code>replace</code>，<code>case when</code>，<code>substr</code>等函数对原始数据进行预处理，并实现时间段的分类<br>交通调查一般只取早晚高峰的小时流量。</p>
+</li>
 <li><p>利用<code>listagg</code>函数来实现按车辆统计路径</p>
  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listagg(c_name) within group (order by pass_time_ss) c_list</span><br><span class="line">from xxx group by plate_no</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <h2 id="3-通过路径来计算交叉口流量"><a href="#3-通过路径来计算交叉口流量" class="headerlink" title="3. 通过路径来计算交叉口流量"></a>3. 通过路径来计算交叉口流量</h2>
