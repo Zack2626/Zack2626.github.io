@@ -162,13 +162,13 @@ layout:
 widget:
   # ---------------------------------------
   # 博主信息小部件配置
-  # - id: blogger
-  #   class: blogger
-  #   avatar: https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png
-  #   # title:  标题
-  #   # subtitle: 副标题
-  #   jinrishici: true # 今日诗词。可以设置字符串，加载失败时会显示占位字符串。
-  #   social: true
+  - id: blogger
+    class: blogger
+    avatar: images/avatar.jpg
+    # title:  标题
+    # subtitle: 副标题
+    jinrishici: true # 今日诗词。可以设置字符串，加载失败时会显示占位字符串。
+    social: true
   # ---------------------------------------
   # 目录小部件配置(仅在文章中有效)
   - id: toc
@@ -324,9 +324,9 @@ social:
   - icon: fas fa-envelope
     url: mailto:me@xaoxuu.com
   - icon: fab fa-github
-    url: https://github.com/xaoxuu
+    url: https://github.com/zack2626
   - icon: fas fa-headphones-alt
-    url: https://music.163.com/#/user/home?id=63035382
+    url: https://music.163.com/#/user/home?id=39249969
 
 
 # 分享按钮

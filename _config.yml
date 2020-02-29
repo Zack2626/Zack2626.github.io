@@ -19,8 +19,9 @@ timezone: ''
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://blog.mrjiumi.cn
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year:month:day:hour:minute.html
 permalink_defaults:
+  lang: zh-CN
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
@@ -97,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: material-x
+theme: Volantis
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -109,3 +110,8 @@ deploy:
     # gitee: https://gitee.com/Zack2626/Zack2626.git,master
 
 use_cdn: true
+copyright: '[Copyright © 2017-2020 Mr.就米](https://blog.mrjiumi.cn)'
+# leancloud: 要使用哪个请复制到根目录配置文件！
+leancloud:
+  app_id: kjJm89mGW6akMFYCjSOaz9Sg-9Nh9j0Va
+  app_key: QUjLI5SW2Vr5a2paoB2DLnJs

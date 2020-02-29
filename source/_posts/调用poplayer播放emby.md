@@ -21,7 +21,7 @@ potplayer可以打开链接播放，所以只要能够获取emny的播放链接�
 我们打开emby的一个视频，按F12打开开发者工具，就能找到视频链接，在标签下的src属性中。这样我们就获取了视频链接。
 <fancybox><img src='\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox>
 
-## 调用emby播放链接
+## 调用emby播放链接  
 potplayer自带了打开链接的功能，如下图所示，也可以参考网上用potplayer看直播的教程。
 
 <fancybox><img src='\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox>
