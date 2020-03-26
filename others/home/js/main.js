@@ -83,7 +83,7 @@ require(['jquery'], function ($) {
 			}, {
 				name: "少数派",
 				url: "https://sspai.com/",
-				icon: "icon/sspai.png"
+				icon: "icon/sspai.jpg"
 			}, {
 				name: "Github",
 				url: "https://github.com/",
@@ -95,7 +95,7 @@ require(['jquery'], function ($) {
 			},{
 				name: "Mrjiumi.cn",
 				url: "https://blog.mrjiumi.cn/",
-				icon: "icon/Mrjiumi.png"
+				icon: "icon/Mrjiumi.jpg"
 			},{
 				name: "飞客茶馆",
 				url: "https://www.flyertea.com/portal.php",
