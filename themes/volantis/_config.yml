@@ -110,7 +110,7 @@ cover:
       url: archives/
     - name: 导航
       icon: fas fa-link
-      url: others/lead.html
+      url: others/home
       target: _blank 
       rel: nofollow
     - name: 关于
