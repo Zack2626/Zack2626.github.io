@@ -3,7 +3,7 @@ title: 调用poplayer播放emby
 date: 2020-02-12 16:19:11
 tags:
 - emby
-catagories:
+categories:
 - 建站
 ---
 
@@ -19,18 +19,18 @@ potplayer可以打开链接播放，所以只要能够获取emny的播放链接�
 
 ## 获取emby视频链接
 我们打开emby的一个视频，按F12打开开发者工具，就能找到视频链接，在标签下的src属性中。这样我们就获取了视频链接。
-<fancybox><img src='\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox>
+<fancybox><img src='..\images\调用potplayer播放emby视频\获取视频url.jpg'></fancybox>
 
 ## 调用emby播放链接  
 potplayer自带了打开链接的功能，如下图所示，也可以参考网上用potplayer看直播的教程。
 
-<fancybox><img src='\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox>
+<fancybox><img src='..\images\调用potplayer播放emby视频\potpalyer打开链接示意.png'></fancybox>
 这样，就完成了用potplayer播放视频，但是过程太过去繁琐。整个流程需要很多操作。都说懒是第一生产力，因而想办法简化流程。
 
 # 2. 利用chrome插件来简化流程
 首先想到的就是利用chrome插件来自动化处理，通过插件来自动识别emby的链接，并调用potplayer播放。
 识别链接网上有很多成功的插件；而调用potplayer，可以利用外部协议url，通过写注册表将url与本地应用程序关联。potplayer安装时自动写入了注册表，所以只需要在浏览器内输入 `potplayer://+url` 就能够利用potplayer来打开视频了，效果如下：
-<fancybox><img src='\images\调用potplayer播放emby视频\浏览器打开potplayer.png'></fancybox>
+<fancybox><img src='..\images\调用potplayer播放emby视频\浏览器打开potplayer.png'></fancybox>
 所以只需要编写chrome插件，识别链接，并打开新标签页，就能够一步实现用potplayer看emby视频了。
 兴奋的我立马开始研究如何写chrome插件，奈何自己没有基础，不会js，折腾了一整晚也没有成功，最后只能选择对别人的插件进行修改。（请参考[如何修改下载的插件](https://cloud.tencent.com/developer/article/1028111)）。
 

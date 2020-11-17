@@ -40,10 +40,10 @@ categories:
 deploy后网页不更新
 
 - github pages页面  
-![github pages](/images/github.png)
+![github pages](../images/github.png)
 
 - gitee pages页面  
-![gitee pages](/images/gitee.png)
+![gitee pages](../images/gitee.png)
 
 添加新文章后，也不会增加新文章。但是查看仓库，发现仓库已经更新，只是网页没有重新部署。
 
@@ -54,4 +54,4 @@ deploy后网页不更新
 ## 后记
 
 发现gitee pages和github不同，自动部署需要Gitee Pages Pro.
-![gitee pages pro](/images/gitee_pages_pro.png)
+![gitee pages pro](../images/gitee_pages_pro.png)
