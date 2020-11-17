@@ -399,8 +399,8 @@
           <p>之前写了一篇如何<a href="https://blog.mrjiumi.cn/202002121619.html">调用potplayer播放emby</a>的文章，虽然基本实现了功能，但是操作比较复杂，也存在一定的局限（不能播放H265编码视频）。<br>经过不懈努力，终于找到了另一种调用的方式，下面介绍给大家。</p>
 <a id="more"></a>
 
-<h2 id="Emby-Theater-for-Windows"><a href="#Emby-Theater-for-Windows" class="headerlink" title="Emby Theater for Windows"></a>Emby Theater for Windows</h2><p>emby有一个很大的优势就是全平台，这个全平台不仅仅是服务端，客户端也是。<br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%80%E8%A7%88.png" alt="客户端一览"><br>这次调用的关键就在于Emby Theater for Windows(<a href="https://embydata.com/downloads/theater/release13/setup.exe" target="_blank" rel="noopener">点击下载</a>)。<br>Emby Theater for Windows是emby官方的windows客户端，界面和网页版类似,操作逻辑也与网页版一致，无任何上手难度。<br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/embytheater%E7%95%8C%E9%9D%A2.png" alt="embytheater界面"></p>
-<p>但是，Emby Theater for Windows有一个致命的缺点，导致它的覆盖率一直不广，那就是这个软件必须订阅emby premiere才能播放视频，没有会员订阅的用户只能<strong>试播一分钟</strong>。<br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E9%9C%80%E8%A6%81%E8%AE%A2%E9%98%85.png" alt="需要订阅"><br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E8%AF%95%E6%92%AD%E4%B8%80%E5%88%86%E9%92%9F.png" alt="试播一分钟"><br>正是这<strong>试播一分钟</strong>给我们留下了机会，亲测试播一分钟只针对官方播放器限制，选用第三方播放器（potplayer等）完全不受一分钟时间的限制，可谓是一举两得，既破解了没有premiere订阅的时常限制，又拜托了鸡肋的官方播放器，调用功能强大的第三方播放器播放。</p>
+<h2 id="Emby-Theater-for-Windows"><a href="#Emby-Theater-for-Windows" class="headerlink" title="Emby Theater for Windows"></a>Emby Theater for Windows</h2><p>emby有一个很大的优势就是全平台，这个全平台不仅仅是服务端，客户端也是。<br><img src="../images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%80%E8%A7%88.png" alt="客户端一览"><br>这次调用的关键就在于Emby Theater for Windows(<a href="https://embydata.com/downloads/theater/release13/setup.exe" target="_blank" rel="noopener">点击下载</a>)。<br>Emby Theater for Windows是emby官方的windows客户端，界面和网页版类似,操作逻辑也与网页版一致，无任何上手难度。<br><img src="../images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/embytheater%E7%95%8C%E9%9D%A2.png" alt="embytheater界面"></p>
+<p>但是，Emby Theater for Windows有一个致命的缺点，导致它的覆盖率一直不广，那就是这个软件必须订阅emby premiere才能播放视频，没有会员订阅的用户只能<strong>试播一分钟</strong>。<br><img src="../images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E9%9C%80%E8%A6%81%E8%AE%A2%E9%98%85.png" alt="需要订阅"><br><img src="../images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E8%AF%95%E6%92%AD%E4%B8%80%E5%88%86%E9%92%9F.png" alt="试播一分钟"><br>正是这<strong>试播一分钟</strong>给我们留下了机会，亲测试播一分钟只针对官方播放器限制，选用第三方播放器（potplayer等）完全不受一分钟时间的限制，可谓是一举两得，既破解了没有premiere订阅的时常限制，又拜托了鸡肋的官方播放器，调用功能强大的第三方播放器播放。</p>
 <h2 id="调用第三方播放器设置"><a href="#调用第三方播放器设置" class="headerlink" title="调用第三方播放器设置"></a>调用第三方播放器设置</h2><p>在Emby Theater for Windows里调用第三方播放器的方法也十分简单，<code>设置-External Player</code>就可以直达添加第三方播放器的页面。<br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E8%AE%BE%E7%BD%AE.png" alt="设置"><br><img src="/images/%E8%B0%83%E7%94%A8potplayer%E6%92%AD%E6%94%BEemby%E8%A7%86%E9%A2%91%EF%BC%88%E4%BA%8C%EF%BC%89/%E6%B7%BB%E5%8A%A0.png" alt="添加"><br>在添加的页面中，添加第三方播放器的路径和命令行参数就可以了。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">播放器路径:</span> <span class="string">C:\Program</span> <span class="string">Files\DAUM\PotPlayer\PotPlayerMini64.exe</span>  <span class="comment">#Potplayer默认安装位置</span></span><br><span class="line"><span class="string">命令行参数：&#123;path&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -464,10 +464,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-14T00:16:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-17T22:33:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年11月14日</p>
+    <p>更新于：2020年11月17日</p>
   </a>
 </div>
 
