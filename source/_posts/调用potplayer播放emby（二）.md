@@ -24,8 +24,8 @@ Emby Theater for Windows是emby官方的windows客户端，界面和网页版类
 
 ## 调用第三方播放器设置
 在Emby Theater for Windows里调用第三方播放器的方法也十分简单，`设置-External Player`就可以直达添加第三方播放器的页面。
-![设置](/images/调用potplayer播放emby视频（二）/设置.png)
-![添加](/images/调用potplayer播放emby视频（二）/添加.png)
+![设置](../images/调用potplayer播放emby视频（二）/设置.png)
+![添加](../images/调用potplayer播放emby视频（二）/添加.png)
 在添加的页面中，添加第三方播放器的路径和命令行参数就可以了。
 ```yml
 播放器路径: C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe  #Potplayer默认安装位置

@@ -36,7 +36,7 @@ potplayer自带了打开链接的功能，如下图所示，也可以参考网�
 
 这里我选取了[笨笨猫](https://www.94cat.com/)编写的[猫抓](https://chrome.google.com/webstore/detail/%E7%8C%AB%E6%8A%93/jfedfbgedapdagkghmgibemcoggfppbb?hl=zh-CN)，这个插件能够直接获取页面上的视频链接，对于emby的链接也能够有效获取，并且对单个视频提供了调用html视频播放器播放视频的按钮，改起来也较为方便。
 猫抓插件使用效果
-<fancybox><img src='\images\调用potplayer播放emby视频\猫抓使用效果.png'></fancybox>
+<fancybox><img src='..\images\调用potplayer播放emby视频\猫抓使用效果.png'></fancybox>
 
 更改的方法就是找到原有插件中播放按钮的代码，改为上文提到的打开 `potplayer://+url` 就可以了。具体代码如下。
 ```javascript
