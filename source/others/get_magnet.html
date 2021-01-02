@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+	<head> 
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+		<title>提取磁力链接</title> 
+	</head>
+	<body>
+		<h1>提取磁力链接 </h1>
+			
+		<form>请输入文本：
+		<input type="text" Id="context">
+		<form>
+
+		<button type="button" onclick="myFunction()">提取</button>
+			
+		<p id="demo"></p>
+
+		<script>
+		function myFunction()
+		{
+			var text,patt,find_text;
+			text = document.getElementById("context").value;
+			patt = /(magnet\S+)/gi;
+			find_text = text.match(patt);
+			document.getElementById("demo").innerHTML =find_text;
+		}
+		</script>
+		
+	</body>
+</html>

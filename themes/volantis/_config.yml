@@ -111,9 +111,9 @@ cover:
     - name: 文章
       icon: fas fa-book
       url: archives/
-    - name: 导航
+    - name: 其他
       icon: fas fa-link
-      url: others/home/
+      url: projects/
       rel: nofollow
       target: _blank 
     - name: 关于
@@ -322,7 +322,6 @@ widget:
     blockquote: true
     permalink: '本文永久链接是：'
     content:
-      - '博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议'
       - permalink
   # ---------------------------------------
   # qrcode widget
@@ -366,7 +365,7 @@ footer:
       url: https://github.com/zack2626
     - icon: fas fa-headphones-alt
       url: https://music.163.com/#/user/home?id=39249969
-  copyright: '[Copyright © 2017-2020 Mr.就米](https://blog.mrjiumi.cn)'
+  copyright: '[沪ICP备2020035775号-1](http://beian.miit.gov.cn)       [Copyright © 2017-2020 Mr.就米](https://blog.mrjiumi.cn)'
   # You can add your own property here. (Support markdown, for example: br: '<br>')
   br: '<br>'
 
