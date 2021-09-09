@@ -100,6 +100,10 @@ require(['jquery'], function ($) {
 				name: "飞客茶馆",
 				url: "https://www.flyertea.com/portal.php",
 				icon: "icon/flytea.png"
+			},{
+				name: "NGA玩家社区",
+				url: "https://bbs.nga.cn/",
+				icon: "icon/nga.ico"
 			}];
 			store.set("bookMark", Storage.bookMark);
 		},
