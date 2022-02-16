@@ -2,29 +2,185 @@
 <html>
 	<head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-		<title>提取磁力链接</title> 
+		<title>正则表达式</title> 
 	</head>
 	<body>
-		<h1>提取磁力链接 </h1>
+		<h1>正则表达式计算 </h1>
 			
-		<form>请输入文本：
-		<input type="text" Id="context">
 		<form>
+			请输入正则表达式：<input type="text" Id="regular" value="magnet\S+">
+			<button type="button" onclick="setMagnet()">磁力链接</button><br>
+			请输入文本：<input type="text" Id="context">
+		</form>
 
-		<button type="button" onclick="myFunction()">提取</button>
-			
-		<p id="demo"></p>
+		<button type="button" onclick="getMagnet()">提取</button>
+		
+		<h2>输出结果 </h2>
+		<p id="output"></p>
 
 		<script>
-		function myFunction()
+			function setMagnet()
+			{
+				document.getElementById("regular").value = "magnet\\S+"
+			}
+		function getMagnet()
 		{
-			var text,patt,find_text;
+			var text,str_patt,patt,find_text,output_text;
 			text = document.getElementById("context").value;
-			patt = /(magnet\S+)/gi;
+			str_patt = document.getElementById("regular").value;
+			patt =eval("/"+str_patt+"/gi");
 			find_text = text.match(patt);
-			document.getElementById("demo").innerHTML =find_text;
+			if (find_text == null){
+				output_text = "查无结果"
+			}
+			else{
+				output_text = '';
+				for (let i in find_text){
+					output_text += find_text[i]+"<br>"
+				};
+			}
+			document.getElementById("output").innerHTML =output_text;
 		}
 		</script>
 		
+		<h2>语法介绍 </h2>
+		<h3>元字符</h3>
+		<p>元字符（Metacharacter）是拥有特殊含义的字符：</p>
+		<table class="reference">
+			<tbody><tr>
+			  <th style="width:20%">元字符</th>
+			  <th>描述</th>
+			</tr>
+		  
+			<tr>
+			  <td><a target="_blank">.</a></td>
+			  <td>查找单个字符，除了换行和行结束符。</td>
+			</tr>
+		  
+			<tr>
+			  <td><a target="_blank">\w</a></td>
+			  <td>查找数字、字母及下划线。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\W</a></td>
+			  <td>查找非单词字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\d</a></td>
+			  <td>查找数字。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\D</a></td>
+			  <td>查找非数字字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\s</a></td>
+			  <td>查找空白字符。</td>
+			</tr>
+			  <tr>
+			  <td><a target="_blank">\S</a></td>
+			  <td>查找非空白字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\b</a></td>
+			  <td>匹配单词边界。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\B</a></td>
+			  <td>匹配非单词边界。</td>
+			</tr>
+			<tr>
+			  <td>\0</td>
+			  <td>查找 NULL 字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\n</a></td>
+			  <td>查找换行符。</td>
+			</tr>
+			<tr>
+			  <td>\f</td>
+			  <td>查找换页符。</td>
+			</tr>
+			<tr>
+			  <td>\r</td>
+			  <td>查找回车符。</td>
+			</tr>
+			  <tr>
+			  <td>\t</td>
+			  <td>查找制表符。</td>
+			</tr>
+			<tr>
+			  <td>\v</td>
+			  <td>查找垂直制表符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\xxx</a></td>
+			  <td>查找以八进制数 xxx 规定的字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\xdd</a></td>
+			  <td>查找以十六进制数 dd 规定的字符。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">\uxxxx</a></td>
+			  <td>查找以十六进制数 xxxx 规定的 Unicode 字符。</td>
+			</tr>
+		  </tbody></table>
+		  <h3>量词</h3>
+		  <table class="reference">
+			<tbody><tr>
+			  <th style="width:20%">量词</th>
+			  <th>描述</th>
+			</tr>
+			<tr>
+			  <td><a target="_blank">n+</a></td>
+			  <td><p>匹配任何包含至少一个 n 的字符串。</p><p>
+		  </p><p>例如，/a+/ 匹配 "candy" 中的 "a"，"caaaaaaandy" 中所有的 "a"。</p></td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">n*</a></td>
+			  <td><p>匹配任何包含零个或多个 n 的字符串。</p><p>例如，/bo*/ 匹配 "A ghost booooed" 中的 "boooo"，"A bird warbled" 中的 "b"，但是不匹配 "A goat grunted"。</p></td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">n?</a></td>
+			  <td><p>匹配任何包含零个或一个 n 的字符串。</p><p>例如，/e?le?/ 匹配 "angel" 中的 "el"，"angle" 中的 "le"。</p></td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">n{X}</a></td>
+			  <td><p>匹配包含 X 个 n 的序列的字符串。</p>
+		  <p>例如，/a{2}/ 不匹配 "candy," 中的 "a"，但是匹配 "caandy," 中的两个 "a"，且匹配 "caaandy." 中的前两个 "a"。</p>
+		  </td>
+			</tr>
+		  <tr>
+		  <td><a>n{X,}</a></td>
+		  <td><p>X 是一个正整数。前面的模式 n 连续出现至少 X 次时匹配。
+		  </p><p>
+		  例如，/a{2,}/ 不匹配 "candy" 中的 "a"，但是匹配 "caandy" 和 "caaaaaaandy." 中所有的 "a"。</p></td>
+		  </tr>
+			<tr>
+			  <td><a target="_blank">n{X,Y}</a></td>
+			  <td><p>
+		  X 和 Y 为正整数。前面的模式 n 连续出现至少 X 次，至多 Y 次时匹配。</p><p>
+		  例如，/a{1,3}/ 不匹配 "cndy"，匹配 "candy," 中的 "a"，"caandy," 中的两个 "a"，匹配 "caaaaaaandy" 中的前面三个 "a"。注意，当匹配 "caaaaaaandy" 时，即使原始字符串拥有更多的 "a"，匹配项也是 "aaa"。</p>
+		  </td>
+			</tr>
+			
+			<tr>
+			  <td><a target="_blank">n$</a></td>
+			  <td>匹配任何结尾为 n 的字符串。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">^n</a></td>
+			  <td>匹配任何开头为 n 的字符串。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">?=n</a></td>
+			  <td>匹配任何其后紧接指定字符串 n 的字符串。</td>
+			</tr>
+			<tr>
+			  <td><a target="_blank">?!n</a></td>
+			  <td>匹配任何其后没有紧接指定字符串 n 的字符串。</td>
+			</tr>
+		  </tbody></table>
 	</body>
 </html>

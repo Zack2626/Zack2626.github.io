@@ -397,18 +397,18 @@
         <div class="article-entry" itemprop="articleBody">
           
           <p>记录一下hexo安装与迁移过程中遇到的坑。</p>
-<a id="more"></a>
+<span id="more"></span>
 
-<h1 id="1-hexo的基础用法"><a href="#1-hexo的基础用法" class="headerlink" title="1. hexo的基础用法"></a>1. hexo的基础用法</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装hexo，参考<a href="https://hexo.io/zh-cn/docs/#%E5%AE%89%E8%A3%85-Hexo" target="_blank" rel="noopener">hexo官网</a><br>在 <code>_config.yml</code> 中添加deploy参数：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type:git</span><br><span class="line">	repo:</span><br><span class="line">		github1: [url1],[branch]</span><br><span class="line">		github2: [url2],[branch]</span><br></pre></td></tr></table></figure>
+<h1 id="1-hexo的基础用法"><a href="#1-hexo的基础用法" class="headerlink" title="1. hexo的基础用法"></a>1. hexo的基础用法</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装hexo，参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/#%E5%AE%89%E8%A3%85-Hexo">hexo官网</a><br>在 <code>_config.yml</code> 中添加deploy参数：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type:git</span><br><span class="line">	repo:</span><br><span class="line">		github1: [url1],[branch]</span><br><span class="line">		github2: [url2],[branch] </span><br></pre></td></tr></table></figure>
 
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo init             <span class="comment">#在当前文件夹下面创建hexo网站</span></span><br><span class="line">hexo server -p xxxx   <span class="comment">#创建本地服务器</span></span><br><span class="line">hexo generate         <span class="comment">#生成hexo网页内容</span></span><br><span class="line">hexo deploy           <span class="comment">#将当前的内容发布到_config.yml中的delpoy网站</span></span><br><span class="line">hexo g -d             <span class="comment">#生成并发布</span></span><br><span class="line">hexo d -g             <span class="comment">#生成并发布</span></span><br><span class="line">hexo new [title]      <span class="comment">#新建一篇名为title的文章</span></span><br></pre></td></tr></table></figure>
 
 
-<h1 id="2-hexo与hexo-cli的区别"><a href="#2-hexo与hexo-cli的区别" class="headerlink" title="2. hexo与hexo-cli的区别"></a>2. hexo与hexo-cli的区别</h1><h3 id="部署时的问题"><a href="#部署时的问题" class="headerlink" title="部署时的问题"></a>部署时的问题</h3><p>部署时，按照<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo.io</a>的教程，安装完git和node.js后，用语句<code>npm install -g hexo-cli</code>安装了hexo。但是部署了出现了错误，deploy后网站首页变成了错误文字。</p>
+<h1 id="2-hexo与hexo-cli的区别"><a href="#2-hexo与hexo-cli的区别" class="headerlink" title="2. hexo与hexo-cli的区别"></a>2. hexo与hexo-cli的区别</h1><h3 id="部署时的问题"><a href="#部署时的问题" class="headerlink" title="部署时的问题"></a>部署时的问题</h3><p>部署时，按照<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo.io</a>的教程，安装完git和node.js后，用语句<code>npm install -g hexo-cli</code>安装了hexo。但是部署了出现了错误，deploy后网站首页变成了错误文字。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在解决这个问题时发现，有hexo和hexo-cli两个库，hexo自带deploy工具，而hexo-cli还需要安装<code>hexo-deployer-git</code>库来实现通过git部署网站。<br>最终，安装hexo后，解决了部署出错的问题。</p>
 <p><strong>这只是一种猜测，具体原因还有待研究</strong><br>**</p>
-<h1 id="3-新安装hexo的注意事项"><a href="#3-新安装hexo的注意事项" class="headerlink" title="3. 新安装hexo的注意事项"></a>3. 新安装hexo的注意事项</h1><p>在电脑上安装好hexo后，需要到hexo的文件夹下面，执行 <code>npm install</code> 的命令。这样，npm会根据文件夹下面package.json文件下的内容，将需要的hexo等库安装到文件夹中。</p>
+<h1 id="3-新安装hexo的注意事项"><a href="#3-新安装hexo的注意事项" class="headerlink" title="3. 新安装hexo的注意事项"></a>3. 新安装hexo的注意事项</h1><p>在电脑上安装好hexo后，需要到hexo的文件夹下面，执行 <code>npm install</code> 的命令。这样，npm会根据文件夹下面package.json文件下的内容，将需要的hexo等库安装到文件夹中。</p>
 
           
             <div class='article_footer'>
@@ -465,10 +465,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-09T00:20:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-09T21:00:44+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年2月9日</p>
+    <p>更新于：2021年9月9日</p>
   </a>
 </div>
 
@@ -698,7 +698,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\201905261251.html" title="gitee pages无法deploy的问题" rel="bookmark">gitee pages无法deploy的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\201911030029.html" title="hexo的渲染问题" rel="bookmark">hexo的渲染问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\202002121619.html" title="调用poplayer播放emby" rel="bookmark">调用poplayer播放emby</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\201905261251.html" title="gitee pages无法deploy的问题" rel="bookmark">gitee pages无法deploy的问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\201911030029.html" title="hexo的渲染问题" rel="bookmark">hexo的渲染问题</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\202007062131.html" title="调用potplayer播放emby（二）" rel="bookmark">调用potplayer播放emby（二）</a></h3></div></li></ul>
     </div>
   </section>
 
